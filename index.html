@@ -1,1111 +1,133 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MagDev | منصة مشاركة الأكواد</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+    <!-- تحسين السيو لمحركات البحث -->
+    <meta name="description"
+        content="اكتشف أفضل محتوى عربي على موقعنا؛ دليل شامل، موارد تعليمية، حلول عملية، وأفكار ممتازة تساعدك في التعلم والتطوير. موقع مُنظّم، سريع، متوافق مع محركات البحث لتحسين تجربة المستخدم وزيادة الوصول. انضم الآن واستفد من أحدث المقالات والدروس القيمة!" />
+    <meta name="keywords"
+        content="Mazen Ghazly, Web Developer, Web Designer, Quran, Projects, Portfolio, HTML, CSS, JavaScript, PHP, MySQL , codes , courses" />
+    <meta name="author" content="Mazen Ghazly" />
+    <meta name="robots" content="index, follow" />
+    <!-- OG Meta (للفيسبوك – الواتساب – التليجرام) -->
+    <meta property="og:title" content="MAG-DEV | تعلم برمجة " />
+    <meta property="og:description" content="منصة MAG-DEV لتعلم البرمجة والتصميم والتطوير. استكشف مشاريعي ومهاراتي." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://magdev.online/" />
+    <meta property="og:image" content="https://magdev.online/images/2.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://magdev.online/images/2.png" />
+    <!-- تحسين سرعة تحميل الخطوط على الموبايل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Structured Data (SEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MAG-DEV",
+        "url": "https://magdev.online/",
+        "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://magdev.online/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+        },
+        "inLanguage": "ar",
+        "description": "اكتشف أفضل محتوى عربي على موقع MAG-DEV، دليل شامل، موارد تعليمية وأفكار ممتازة تساعدك في التعلم والتطوير."
+    }
+    </script>
+    <!-- سرعة التحميل – ضروري للموبايل -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- تثبيت الألوان على الموبايل (Status Bar) -->
+    <meta name="theme-color" content="#0a0a0a" />
+    <!-- عنوان الموقع -->
+    <title>MAG-DEV | تعلم برمجة </title>
+    <!-- روابط الخطوط -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-        
-        :root {
-            --primary-color: #24292e;
-            --secondary-color: #f6f8fa;
-            --accent-color: #2ea44f;
-            --border-color: #e1e4e8;
-            --text-color: #24292e;
-            --text-secondary: #586069;
-            --code-bg: #f6f8fa;
-            --public-color: #2ea44f;
-            --private-color: #f9826c;
-        }
-        
-        body {
-            background-color: #fafbfc;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        /* شريط التنقل العلوي */
-        .navbar {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-        
-        .logo i {
-            color: var(--accent-color);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #c8c9cb;
-        }
-        
-        .search-bar {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            padding: 8px 15px;
-            color: white;
-            width: 300px;
-            transition: all 0.3s;
-        }
-        
-        .search-bar:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.15);
-            width: 350px;
-        }
-        
-        .auth-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .btn {
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-        }
-        
-        .btn-outline:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #2c974b;
-        }
-        
-        /* المحتوى الرئيسي */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-        
-        /* صفحة الترحيب */
-        .hero-section {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #2ea44f 0%, #2c974b 100%);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 40px;
-        }
-        
-        .hero-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero-section p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        
-        .hero-buttons .btn {
-            padding: 12px 24px;
-            font-size: 1.1rem;
-        }
-        
-        /* قسم تصفح المشاريع */
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-title i {
-            color: var(--accent-color);
-        }
-        
-        /* تصفية المشاريع */
-        .projects-filter {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .filter-options {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            padding: 8px 16px;
-            border-radius: 20px;
-            background-color: var(--secondary-color);
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .sort-select {
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: white;
-            color: var(--text-color);
-        }
-        
-        /* شبكة المشاريع */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-        
-        .project-card {
-            background-color: white;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .project-name {
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: #0366d6;
-            text-decoration: none;
-        }
-        
-        .project-name:hover {
-            text-decoration: underline;
-        }
-        
-        .project-visibility {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .public {
-            background-color: rgba(46, 164, 79, 0.1);
-            color: var(--public-color);
-        }
-        
-        .private {
-            background-color: rgba(249, 130, 108, 0.1);
-            color: var(--private-color);
-        }
-        
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 1rem;
-            min-height: 60px;
-        }
-        
-        .project-language {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background-color: var(--secondary-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .language-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        
-        .html-color { background-color: #e34c26; }
-        .css-color { background-color: #563d7c; }
-        .js-color { background-color: #f1e05a; }
-        .python-color { background-color: #3572A5; }
-        .php-color { background-color: #4F5D95; }
-        
-        .project-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-        }
-        
-        .project-stats {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .project-author {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .author-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: #2c974b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-            color: white;
-        }
-        
-        /* قسم كيفية الاستخدام */
-        .how-to-section {
-            background-color: white;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .step {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .step-icon {
-            background-color: var(--secondary-color);
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.8rem;
-            color: var(--accent-color);
-        }
-        
-        .step h3 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        /* محرر الكود المباشر */
-        .live-editor-section {
-            background-color: white;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
-        
-        .editor-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .editor-tabs {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .editor-tab {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.7);
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .editor-tab.active {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-        }
-        
-        .editor-content {
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .code-editor {
-            display: flex;
-            min-height: 300px;
-        }
-        
-        .code-input {
-            flex: 1;
-            padding: 20px;
-            border: none;
-            border-right: 1px solid var(--border-color);
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            resize: vertical;
-            background-color: var(--code-bg);
-        }
-        
-        .code-input:focus {
-            outline: none;
-        }
-        
-        .code-preview {
-            flex: 1;
-            padding: 20px;
-            overflow: auto;
-        }
-        
-        .editor-actions {
-            padding: 15px 20px;
-            background-color: var(--secondary-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        /* التذييل */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 40px 30px;
-            margin-top: 50px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #c8c9cb;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #8b949e;
-            font-size: 0.9rem;
-        }
-        
-        /* تصميم متجاوب */
-        @media (max-width: 992px) {
-            .projects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .code-editor {
-                flex-direction: column;
-            }
-            
-            .code-input {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .search-bar {
-                width: 100%;
-                max-width: 400px;
-            }
-            
-            .search-bar:focus {
-                width: 100%;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .projects-filter {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .filter-options {
-                justify-content: center;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <!-- روابط ملفات التنسيق -->
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
-    <!-- شريط التنقل العلوي -->
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-code"></i>
-            <span>MagDev</span>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">MAG-DEV</div>
+            <nav>
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#about">عن المنصة</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle">الوضع الداكن</button>
         </div>
-        
-        <div class="nav-links">
-            <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
-            <a href="#projects"><i class="fas fa-project-diagram"></i> المشاريع</a>
-            <a href="#explore"><i class="fas fa-compass"></i> استكشف</a>
-            <a href="#trending"><i class="fas fa-fire"></i> الرائجة</a>
-            <a href="#docs"><i class="fas fa-book"></i> الوثائق</a>
-        </div>
-        
-        <input type="text" class="search-bar" placeholder="ابحث في المشاريع أو المطورين...">
-        
-        <div class="auth-buttons">
-            <button class="btn btn-outline">تسجيل الدخول</button>
-            <button class="btn btn-primary">انضم إلينا</button>
-        </div>
-    </nav>
+    </header>
 
-    <!-- المحتوى الرئيسي -->
-    <div class="container">
-        <!-- صفحة الترحيب -->
-        <section class="hero-section">
-            <h1>مرحبًا بكم في MagDev</h1>
-            <p>منصة عربية لمشاركة الأكواد والمشاريع البرمجية. شارك مشاريعك، استعرض أكواد الآخرين، وتعلم من مجتمع المطورين.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> ابدأ برفع مشروعك</button>
-                <button class="btn btn-outline" style="background: white; color: #2c974b;"><i class="fas fa-search"></i> استعرض المشاريع</button>
-            </div>
-        </section>
-        
-        <!-- قسم المشاريع الشائعة -->
-        <section id="projects">
-            <h2 class="section-title"><i class="fas fa-project-diagram"></i> المشاريع الشائعة</h2>
+    <!-- Hero / Dashboard Section -->
+    <section class="hero" id="dashboard">
+        <div class="container">
+            <h1 class="hero-title">مرحباً بك في MAG-DEV</h1>
+            <p class="hero-subtitle">منصة عربية لتعلم البرمجة والفيديوهات والأكواد الجاهزة بطريقة تفاعلية.</p>
             
-            <div class="projects-filter">
-                <div class="filter-options">
-                    <button class="filter-btn active">جميع المشاريع</button>
-                    <button class="filter-btn">ويب</button>
-                    <button class="filter-btn">جوال</button>
-                    <button class="filter-btn">ذكاء اصطناعي</button>
-                    <button class="filter-btn">ألعاب</button>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>كورسات برمجة</h3>
+                    <p>اضغط للدخول إلى صفحة الكورسات ومتابعة تعلم البرمجة خطوة بخطوة.</p>
+                    <a href="courses.html" class="card-btn">ادخل الآن</a>
                 </div>
-                
-                <select class="sort-select">
-                    <option>الأكثر شهرة</option>
-                    <option>الأحدث</option>
-                    <option>الأكثر تفاعلاً</option>
-                    <option>الأكثر تقييماً</option>
-                </select>
-            </div>
-            
-            <div class="projects-grid">
-                <!-- مشروع 1 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="#" class="project-name">نظام إدارة المحتوى</a>
-                        <span class="project-visibility public">عام</span>
-                    </div>
-                    <p class="project-description">نظام إدارة محتوى مبني بلغة PHP مع واجهة إدارة سهلة الاستخدام ودعم للغة العربية.</p>
-                    <div class="project-language">
-                        <span class="language-color php-color"></span>
-                        <span>PHP</span>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-stats">
-                            <span><i class="fas fa-star"></i> 42</span>
-                            <span><i class="fas fa-code-branch"></i> 8</span>
-                            <span><i class="fas fa-eye"></i> 210</span>
-                        </div>
-                        <div class="project-author">
-                            <div class="author-avatar">ع</div>
-                            <span>علي أحمد</span>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h3>أكواد MAG-DEV</h3>
+                    <p>صفحة الأكواد الجاهزة لمشاريعك البرمجية، جاهزة للنسخ والتجربة.</p>
+                    <a href="codes.html" class="card-btn">ادخل الآن</a>
                 </div>
-                
-                <!-- مشروع 2 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="#" class="project-name">تطبيق قائمة المهام</a>
-                        <span class="project-visibility public">عام</span>
-                    </div>
-                    <p class="project-description">تطبيق ويب تفاعلي لقائمة المهام مبني بـ React مع تخزين محلي.</p>
-                    <div class="project-language">
-                        <span class="language-color js-color"></span>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-stats">
-                            <span><i class="fas fa-star"></i> 35</span>
-                            <span><i class="fas fa-code-branch"></i> 12</span>
-                            <span><i class="fas fa-eye"></i> 187</span>
-                        </div>
-                        <div class="project-author">
-                            <div class="author-avatar">س</div>
-                            <span>سارة محمد</span>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h3>Coming Soon</h3>
+                    <p>ميزات جديدة ستضاف قريبًا لتجربة تعليمية أكثر تفاعلية.</p>
+                    <a href="#" class="card-btn disabled">قريباً</a>
                 </div>
-                
-                <!-- مشروع 3 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="#" class="project-name">موقع تجارة إلكترونية</a>
-                        <span class="project-visibility private">خاص</span>
-                    </div>
-                    <p class="project-description">موقع متكامل للتجارة الإلكترونية مع لوحة تحكم للمشرف وعربة تسوق.</p>
-                    <div class="project-language">
-                        <span class="language-color python-color"></span>
-                        <span>Python</span>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-stats">
-                            <span><i class="fas fa-star"></i> 28</span>
-                            <span><i class="fas fa-code-branch"></i> 5</span>
-                            <span><i class="fas fa-eye"></i> 156</span>
-                        </div>
-                        <div class="project-author">
-                            <div class="author-avatar">م</div>
-                            <span>محمود خالد</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- مشروع 4 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="#" class="project-name">أداة تحليل النصوص</a>
-                        <span class="project-visibility public">عام</span>
-                    </div>
-                    <p class="project-description">أداة لتحليل النصوص العربية باستخدام خوارزميات معالجة اللغة الطبيعية.</p>
-                    <div class="project-language">
-                        <span class="language-color python-color"></span>
-                        <span>Python</span>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-stats">
-                            <span><i class="fas fa-star"></i> 51</span>
-                            <span><i class="fas fa-code-branch"></i> 15</span>
-                            <span><i class="fas fa-eye"></i> 312</span>
-                        </div>
-                        <div class="project-author">
-                            <div class="author-avatar">ف</div>
-                            <span>فاطمة عمر</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- مشروع 5 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="#" class="project-name">مكتبة الأيقونات العربية</a>
-                        <span class="project-visibility public">عام</span>
-                    </div>
-                    <p class="project-description">مكتبة أيقونات مخصصة للواجهات العربية بتصميم عصري وأنيق.</p>
-                    <div class="project-language">
-                        <span class="language-color css-color"></span>
-                        <span>CSS</span>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-stats">
-                            <span><i class="fas fa-star"></i> 67</span>
-                            <span><i class="fas fa-code-branch"></i> 22</span>
-                            <span><i class="fas fa-eye"></i> 423</span>
-                        </div>
-                        <div class="project-author">
-                            <div class="author-avatar">ن</div>
-                            <span>نورا سعيد</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- مشروع 6 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="#" class="project-name">لعبة الذاكرة التفاعلية</a>
-                        <span class="project-visibility public">عام</span>
-                    </div>
-                    <p class="project-description">لعبة ذاكرة تعليمية للأطفال مع مستويات صعوبة متدرجة وتصميم جذاب.</p>
-                    <div class="project-language">
-                        <span class="language-color js-color"></span>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-stats">
-                            <span><i class="fas fa-star"></i> 39</span>
-                            <span><i class="fas fa-code-branch"></i> 9</span>
-                            <span><i class="fas fa-eye"></i> 245</span>
-                        </div>
-                        <div class="project-author">
-                            <div class="author-avatar">خ</div>
-                            <span>خالد وليد</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- كيفية الاستخدام -->
-        <section class="how-to-section">
-            <h2 class="section-title"><i class="fas fa-question-circle"></i> كيف تستخدم MagDev؟</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <h3>انضم إلينا</h3>
-                    <p>أنشئ حسابًا مجانياً للوصول إلى جميع الميزات</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <h3>ارفع مشروعك</h3>
-                    <p>شارك أكوادك مع المجتمع العربي للمطورين</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>استكشف المشاريع</h3>
-                    <p>تصفح مشاريع الآخرين وتعلم من أكوادهم</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>تفاعل مع المجتمع</h3>
-                    <p>شارك آراءك وساعد الآخرين في مشاريعهم</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- محرر الكود المباشر -->
-        <section class="live-editor-section">
-            <div class="editor-header">
-                <h3><i class="fas fa-code"></i> محرر الكود المباشر</h3>
-                <div class="editor-tabs">
-                    <button class="editor-tab active">HTML</button>
-                    <button class="editor-tab">CSS</button>
-                    <button class="editor-tab">JavaScript</button>
-                </div>
-            </div>
-            
-            <div class="editor-content">
-                <div class="code-editor">
-                    <textarea class="code-input" placeholder="اكتب كودك هنا...">&lt;!DOCTYPE html&gt;
-&lt;html lang="ar" dir="rtl"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;مثال MagDev&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f0f8ff;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #2c974b;
-        }
-        .box {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 20px auto;
-            max-width: 500px;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="box"&gt;
-        &lt;h1&gt;مرحبًا بكم في MagDev!&lt;/h1&gt;
-        &lt;p&gt;منصة مشاركة الأكواد العربية&lt;/p&gt;
-        &lt;button onclick="showMessage()"&gt;انقر هنا&lt;/button&gt;
-        &lt;p id="message"&gt;&lt;/p&gt;
-    &lt;/div&gt;
-    
-    &lt;script&gt;
-        function showMessage() {
-            document.getElementById('message').innerHTML = 'أهلاً وسهلاً! هذا مثال على التفاعل.';
-        }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</textarea>
-                    <div class="code-preview">
-                        <iframe id="previewFrame" style="width: 100%; height: 100%; border: none;"></iframe>
-                    </div>
-                </div>
-                
-                <div class="editor-actions">
-                    <button class="btn btn-primary" id="runCode"><i class="fas fa-play"></i> تشغيل الكود</button>
-                    <button class="btn btn-outline" id="shareCode"><i class="fas fa-share-alt"></i> مشاركة الكود</button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- التذييل -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>MagDev</h3>
-                <p>منصة عربية لمشاركة الأكواد والتعاون بين المطورين.</p>
-                <p style="margin-top: 15px;">
-                    <a href="https://magdev.online" style="color: white; font-weight: bold;">magdev.online</a>
-                </p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>المجتمع</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-users"></i> المطورون</a></li>
-                    <li><a href="#"><i class="fas fa-comments"></i> المناقشات</a></li>
-                    <li><a href="#"><i class="fas fa-hands-helping"></i> المساعدة</a></li>
-                    <li><a href="#"><i class="fas fa-graduation-cap"></i> التعلم</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>المشاريع</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-fire"></i> الرائجة</a></li>
-                    <li><a href="#"><i class="fas fa-star"></i> المميزة</a></li>
-                    <li><a href="#"><i class="fas fa-history"></i> الحديثة</a></li>
-                    <li><a href="#"><i class="fas fa-tags"></i> التصنيفات</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>التواصل</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fab fa-twitter"></i> تويتر</a></li>
-                    <li><a href="#"><i class="fab fa-github"></i> جيت هب</a></li>
-                    <li><a href="#"><i class="fab fa-discord"></i> ديسكورد</a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
-                </ul>
             </div>
         </div>
-        
-        <div class="copyright">
-            &copy; 2023 MagDev. جميع الحقوق محفوظة. منصة مفتوحة المصدر للمجتمع العربي.
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">عن منصة MAG-DEV</h2>
+            <p>
+                MAG-DEV هي منصة تعليمية عربية متقدمة تساعد المبرمجين على تعلم البرمجة بطريقة تفاعلية.
+                تصميم حديث، Dark theme، واجهة Dashboard تجعل المستخدم يشعر أنه داخل بيئة تطوير حقيقية.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:magdev@example.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://x.com/MAGDEV"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/20123456789"><i class="fas fa-phone"></i></a>
+            </div>
+            <p>&copy; 2026 MAG-DEV. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
+    <!-- JS Dark/Light Mode -->
     <script>
-        // تفعيل أزرار التصفية
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        // تشغيل محرر الكود المباشر
-        const runCodeBtn = document.getElementById('runCode');
-        const codeInput = document.querySelector('.code-input');
-        const previewFrame = document.getElementById('previewFrame');
-        
-        runCodeBtn.addEventListener('click', function() {
-            const code = codeInput.value;
-            const previewDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
-            
-            previewDoc.open();
-            previewDoc.write(code);
-            previewDoc.close();
-        });
-        
-        // تشغيل الكود تلقائياً عند التحميل
-        window.addEventListener('DOMContentLoaded', function() {
-            runCodeBtn.click();
-        });
-        
-        // تفعيل تبويبات المحرر
-        const editorTabs = document.querySelectorAll('.editor-tab');
-        editorTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                editorTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                // تغيير لغة المحرر (يمكن إضافة مكتبة مثل CodeMirror هنا)
-                const lang = this.textContent;
-                if (lang === 'CSS') {
-                    codeInput.value = `/* أنماط CSS */
-body {
-    font-family: 'Cairo', sans-serif;
-    background: linear-gradient(135deg, #2ea44f 0%, #2c974b 100%);
-    color: white;
-    text-align: center;
-    padding: 50px;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-}
-
-.button {
-    background: white;
-    color: #2c974b;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}`;
-                } else if (lang === 'JavaScript') {
-                    codeInput.value = `// كود JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('مرحبًا بكم في MagDev!');
-    
-    // عرض رسالة ترحيب
-    function showWelcome() {
-        const now = new Date();
-        const hour = now.getHours();
-        let greeting;
-        
-        if (hour < 12) {
-            greeting = 'صباح الخير!';
-        } else if (hour < 18) {
-            greeting = 'مساء الخير!';
-        } else {
-            greeting = 'مساء الخير!';
-        }
-        
-        alert(greeting + ' أهلاً بكم في منصة MagDev');
-    }
-    
-    // تغيير لون الخلفية بشكل عشوائي
-    function changeBackground() {
-        const colors = ['#2ea44f', '#0366d6', '#6f42c1', '#d73a49', '#f66a0a'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        document.body.style.backgroundColor = randomColor;
-    }
-    
-    // إضافة الأزرار للوظائف
-    const container = document.querySelector('.container') || document.body;
-    
-    const welcomeBtn = document.createElement('button');
-    welcomeBtn.textContent = 'رسالة ترحيب';
-    welcomeBtn.className = 'button';
-    welcomeBtn.onclick = showWelcome;
-    
-    const colorBtn = document.createElement('button');
-    colorBtn.textContent = 'تغيير اللون';
-    colorBtn.className = 'button';
-    colorBtn.style.marginLeft = '10px';
-    colorBtn.onclick = changeBackground;
-    
-    container.appendChild(welcomeBtn);
-    container.appendChild(colorBtn);
-});`;
-                } else {
-                    // HTML
-                    codeInput.value = `<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>مثال MagDev</title>
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f0f8ff;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #2c974b;
-        }
-        .box {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 20px auto;
-            max-width: 500px;
-        }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <h1>مرحبًا بكم في MagDev!</h1>
-        <p>منصة مشاركة الأكواد العربية</p>
-        <button onclick="showMessage()">انقر هنا</button>
-        <p id="message"></p>
-    </div>
-    
-    <script>
-        function showMessage() {
-            document.getElementById('message').innerHTML = 'أهلاً وسهلاً! هذا مثال على التفاعل.';
-        }
-    </script>
-</body>
-</html>`;
-                }
-                
-                runCodeBtn.click();
-            });
-        });
-        
-        // مشاركة الكود
-        const shareCodeBtn = document.getElementById('shareCode');
-        shareCodeBtn.addEventListener('click', function() {
-            const code = codeInput.value;
-            // في التطبيق الفعلي، هنا نرسل الكود للخادم ونحصل على رابط للمشاركة
-            alert('في النسخة الكاملة، سيتم إنشاء رابط للمشاركة يمكنك إرساله للآخرين');
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            toggleButton.textContent = body.classList.contains('dark-mode') ? "الوضع الفاتح" : "الوضع الداكن";
         });
     </script>
 </body>
+
+
+
 </html>
