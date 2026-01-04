@@ -1,128 +1,163 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
+    <!-- Charset & Viewport -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
-    <!-- تحسين السيو لمحركات البحث -->
-    <meta name="description"
-        content="اكتشف أفضل محتوى عربي على موقعنا؛ دليل شامل، موارد تعليمية، حلول عملية، وأفكار ممتازة تساعدك في التعلم والتطوير. موقع مُنظّم، سريع، متوافق مع محركات البحث لتحسين تجربة المستخدم وزيادة الوصول. انضم الآن واستفد من أحدث المقالات والدروس القيمة!" />
-    <meta name="keywords"
-        content="Mazen Ghazly, Web Developer, Web Designer, Quran, Projects, Portfolio, HTML, CSS, JavaScript, PHP, MySQL , codes , courses" />
-    <meta name="author" content="Mazen Ghazly" />
+
+    <!-- Title -->
+    <title>MAG-DEV | تعلم البرمجة من الصفر 🚀 كورسات وأكواد عربية</title>
+
+    <!-- Primary SEO -->
+    <meta name="description" content="MAG-DEV منصة عربية لتعلم البرمجة 💻 | كورسات برمجة من الصفر، أكواد جاهزة، شرح عملي وتطبيقي للمبتدئين والمحترفين. ابدأ تعلم البرمجة الآن 🚀" />
+    <meta name="keywords" content="تعلم البرمجة, كورسات برمجة, أكواد برمجة, برمجة للمبتدئين, HTML, CSS, JavaScript, Python, منصة برمجة عربية, MAG-DEV" />
     <meta name="robots" content="index, follow" />
-    <!-- OG Meta (للفيسبوك – الواتساب – التليجرام) -->
-    <meta property="og:title" content="MAG-DEV | تعلم برمجة " />
-    <meta property="og:description" content="منصة MAG-DEV لتعلم البرمجة والتصميم والتطوير. استكشف مشاريعي ومهاراتي." />
+    <meta name="author" content="MAG-DEV" />
+    <meta name="language" content="ar" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://magdev.online/" />
+
+    <!-- Theme / Mobile -->
+    <meta name="theme-color" content="#0d1117" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/2.png" />
+    <link rel="apple-touch-icon" href="images/2.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="MAG-DEV | منصة تعلم البرمجة العربية 💻" />
+    <meta property="og:description" content="تعلم البرمجة من الصفر 🚀 كورسات عملية + أكواد جاهزة داخل بيئة برمجية احترافية." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://magdev.online/" />
     <meta property="og:image" content="https://magdev.online/images/2.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://magdev.online/images/2.png" />
-    <!-- تحسين سرعة تحميل الخطوط على الموبايل -->
+    <meta property="og:locale" content="ar_AR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MAG-DEV | تعلم البرمجة من الصفر" />
+    <meta name="twitter:description" content="منصة برمجة عربية 🚀 كورسات + أكواد + تعليم عملي." />
+    <meta name="twitter:image" content="https://magdev.online/images/2.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Structured Data (SEO) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/index.css" />
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "MAG-DEV",
-        "url": "https://magdev.online/",
-        "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://magdev.online/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-        },
-        "inLanguage": "ar",
-        "description": "اكتشف أفضل محتوى عربي على موقع MAG-DEV، دليل شامل، موارد تعليمية وأفكار ممتازة تساعدك في التعلم والتطوير."
+    
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "MAG-DEV",
+    "url": "https://magdev.online/",
+    "description": "منصة عربية متخصصة في تعلم البرمجة من الصفر. كورسات برمجة، أكواد جاهزة، تعليم عملي للمبتدئين والمحترفين.",
+    "inLanguage": "ar",
+    "educationalLevel": "Beginner to Advanced",
+    "teaches": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python",
+        "Web Development"
+        ]
     }
     </script>
-    <!-- سرعة التحميل – ضروري للموبايل -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- تثبيت الألوان على الموبايل (Status Bar) -->
-    <meta name="theme-color" content="#0a0a0a" />
-    <!-- عنوان الموقع -->
-    <title>MAG-DEV | تعلم برمجة </title>
-    <link rel="stylesheet" href="https://magdev.online/css/index.css" >
-    <!-- روابط الخطوط -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;800;900&display=swap" >
 </head>
+
 <body>
 
-    <header>
-        <div class="container">
-            <div class="logo">MAG-DEV</div>
-            <nav>
-                <ul>
-                    <li><a href="#dashboard">Dashboard</a></li>
-                    <li><a href="#about">عن المنصة</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
-                </ul>
-            </nav>
-            <button id="theme-toggle">الوضع الداكن</button>
-        </div>
-    </header>
+<!-- Header -->
+<header>
+    <div class="logo">MAG-DEV</div>
+    <nav>
+        <ul>
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="courses.html">كورسات</a></li>
+            <li><a href="codes.html">أكواد</a></li>
+            <li><a href="#about">عن المنصة</a></li>
+        </ul>
+    </nav>
+    <button id="theme-toggle">Light</button>
+</header>
 
-    <!-- Hero / Dashboard Section -->
-    <section class="hero" id="dashboard">
-        <div class="container">
-            <h1 class="hero-title">مرحباً بك في MAG-DEV</h1>
-            <p class="hero-subtitle">منصة عربية لتعلم البرمجة والفيديوهات والأكواد الجاهزة بطريقة تفاعلية.</p>
-            
-            <div class="dashboard-cards">
-                <div class="card">
-                    <h3>كورسات برمجة</h3>
-                    <p>اضغط للدخول إلى صفحة الكورسات ومتابعة تعلم البرمجة خطوة بخطوة.</p>
-                    <a href="courses.html" class="card-btn">ادخل الآن</a>
-                </div>
-                <div class="card">
-                    <h3>أكواد MAG-DEV</h3>
-                    <p>صفحة الأكواد الجاهزة لمشاريعك البرمجية، جاهزة للنسخ والتجربة.</p>
-                    <a href="codes.html" class="card-btn">ادخل الآن</a>
-                </div>
-                <div class="card">
-                    <h3>Coming Soon</h3>
-                    <p>ميزات جديدة ستضاف قريبًا لتجربة تعليمية أكثر تفاعلية.</p>
-                    <a href="#" class="card-btn disabled">قريباً</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Hero / Dashboard -->
+<section class="hero" id="home">
+    <h1 class="hero-title">
+        تعلم البرمجة من الصفر مع MAG-DEV 💻
+    </h1>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">عن منصة MAG-DEV</h2>
+    <p class="hero-subtitle">
+        منصة برمجة عربية احترافية ⚙️  
+        كورسات عملية، أكواد جاهزة، وتجربة تعليم تحسسك إنك داخل بيئة تطوير حقيقية.
+    </p>
+
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3>👨‍💻 كورسات برمجة</h3>
             <p>
-                MAG-DEV هي منصة تعليمية عربية متقدمة تساعد المبرمجين على تعلم البرمجة بطريقة تفاعلية.
-                تصميم حديث، Dark theme، واجهة Dashboard تجعل المستخدم يشعر أنه داخل بيئة تطوير حقيقية.
+                تعلم البرمجة خطوة بخطوة من الصفر حتى الاحتراف  
+                باستخدام شرح عربي واضح وتطبيق عملي.
             </p>
+            <a href="courses.html" class="card-btn">الدخول للكورسات</a>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="social-links">
-                <a href="mailto:magdev@example.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://x.com/MAGDEV"><i class="fab fa-twitter"></i></a>
-                <a href="https://wa.me/20123456789"><i class="fas fa-phone"></i></a>
-            </div>
-            <p>&copy; 2026 MAG-DEV. جميع الحقوق محفوظة.</p>
+        <div class="card">
+            <h3>📦 أكواد جاهزة</h3>
+            <p>
+                مكتبة أكواد برمجية جاهزة للاستخدام  
+                في مشاريع الويب والتطبيقات.
+            </p>
+            <a href="codes.html" class="card-btn">عرض الأكواد</a>
         </div>
-    </footer>
 
-    <!-- JS Dark/Light Mode -->
-    <script>
-        const toggleButton = document.getElementById('theme-toggle');
-        const body = document.body;
-        toggleButton.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            toggleButton.textContent = body.classList.contains('dark-mode') ? "الوضع الفاتح" : "الوضع الداكن";
-        });
-    </script>
+        <div class="card">
+            <h3>🚀 بيئة تعليمية</h3>
+            <p>
+                تصميم Dashboard برمجي  
+                يخليك تحس إنك داخل IDE مش موقع عادي.
+            </p>
+            <a href="#" class="card-btn disabled">قريباً</a>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <h2 class="section-title">عن منصة MAG-DEV</h2>
+    <p>
+        MAG-DEV هي منصة عربية متخصصة في <strong>تعلم البرمجة</strong> 👨‍💻  
+        من الصفر حتى الاحتراف، نقدم <strong>كورسات برمجة عملية</strong>  
+        و<strong>أكواد جاهزة</strong> داخل بيئة تعليمية تحاكي الواقع البرمجي الحقيقي.
+    </p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="social-links">
+        <a href="mailto:magdev@example.com"><i class="fas fa-envelope"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>© 2026 MAG-DEV — منصة تعلم البرمجة العربية</p>
+</footer>
+
+<!-- JS -->
+<script>
+    const btn = document.getElementById("theme-toggle");
+    btn.onclick = () => {
+        document.body.classList.toggle("dark-mode");
+        btn.textContent = document.body.classList.contains("dark-mode") ? "Dark" : "Light";
+    };
+</script>
+
 </body>
 </html>
