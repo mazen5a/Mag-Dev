@@ -7,93 +7,68 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Cairo', sans-serif;
-        background: radial-gradient(circle at top, #1a1a1a, #000000);
-        color: white;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cairo', sans-serif;
+    transition: 1s;
+    color: white;
+}
 
-    .card {
-        width: 600px;
-        padding: 60px 40px;
-        border-radius: 25px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 0 80px rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255,255,255,0.15);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
+.card {
+    width: 650px;
+    padding: 60px 40px;
+    border-radius: 25px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 80px rgba(0,0,0,0.5);
+    animation: fadeIn 1.5s;
+}
 
-    /* لمعة خفيفة */
-    .card::before {
-        content: "";
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
-        transform: rotate(25deg);
-        top: -50%;
-        left: -50%;
-        animation: shine 6s infinite;
-    }
+.title {
+    font-size: 14px;
+    letter-spacing: 3px;
+    opacity: 0.7;
+}
 
-    @keyframes shine {
-        0% {transform: translateX(-100%) rotate(25deg);}
-        100% {transform: translateX(100%) rotate(25deg);}
-    }
+.date {
+    margin: 10px 0 25px;
+    font-size: 14px;
+    opacity: 0.6;
+}
 
-    .title {
-        font-size: 14px;
-        letter-spacing: 3px;
-        color: rgba(255,255,255,0.5);
-        margin-bottom: 15px;
-    }
+.quote {
+    font-size: 34px;
+    line-height: 2.2;
+    margin: 30px 0;
+}
 
-    .date {
-        font-size: 13px;
-        color: rgba(255,255,255,0.4);
-        margin-bottom: 30px;
-    }
+.en {
+    font-size: 18px;
+    opacity: 0.7;
+    margin-top: 15px;
+}
 
-    .line {
-        margin: 25px 0;
-        color: rgba(255,255,255,0.3);
-    }
+.symbol {
+    font-size: 22px;
+    margin: 15px 0;
+    opacity: 0.5;
+}
 
-    .quote {
-        font-size: 36px;
-        font-weight: 700;
-        line-height: 2.2;
-        margin: 30px 0;
-        animation: fadeIn 2s ease;
-    }
+.name {
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 0.6;
+}
 
-    .quote span {
-        display: block;
-    }
-
-    .name {
-        margin-top: 40px;
-        font-size: 14px;
-        color: rgba(255,255,255,0.5);
-        letter-spacing: 1px;
-    }
-
-    .name::before {
-        content: "— ";
-    }
-
-    @keyframes fadeIn {
-        from {opacity: 0; transform: translateY(20px);}
-        to {opacity: 1; transform: translateY(0);}
-    }
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
 </style>
 
 </head>
@@ -102,28 +77,71 @@
 
 <div class="card">
 
-    <div class="title">QUOTE OF THE DAY</div>
-    <div class="date" id="date"></div>
+<div class="title">اقتباس اليوم</div>
+<div class="date" id="date"></div>
 
-    <div class="line">✦ ───────────── ✦</div>
+<div class="symbol" id="symbol"></div>
 
-    <div class="quote">
-        <span>هَكَذَا الدُّنْيَا...</span>
-        <span>وَكُلُّ مَا عَلَيْهَا فَانٍ.</span>
-    </div>
+<div class="quote" id="quote"></div>
+<div class="en" id="quoteEn"></div>
 
-    <div class="line">✦ ───────────── ✦</div>
+<div class="symbol" id="symbol2"></div>
 
-    <div class="name">
-        mohamed ahmed mohamed ghazly
-    </div>
+<div class="name">— mohamed ahmed mohamed ghazly</div>
 
 </div>
 
 <script>
-    const today = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById("date").innerText = today.toLocaleDateString('en-US', options);
+
+// اقتباسات جامدة 🔥
+const quotes = [
+{
+ar: "هَكَذَا الدُّنْيَا... وَكُلُّ مَا عَلَيْهَا فَانٍ، فَلَا تَتَعَلَّقْ بِمَا يَزُول.",
+en: "This is life... everything upon it fades, so do not cling to what will vanish.",
+bg: "radial-gradient(circle, #000000, #1a1a1a)",
+symbol: "✦ ───────────── ✦"
+},
+{
+ar: "أَكْبَرُ خَدِيعَةٍ فِي الحَيَاةِ... أَنْ تَظُنَّ أَنَّ لَكَ وَقْتًا كَافِيًا.",
+en: "The greatest illusion in life is thinking you have enough time.",
+bg: "linear-gradient(135deg, #1f1c2c, #928dab)",
+symbol: "⏳ ───────────── ⏳"
+},
+{
+ar: "مَنْ أَتْقَنَ الصَّبْرَ... لَمْ تَكْسِرْهُ الحَيَاةُ أَبَدًا.",
+en: "Who masters patience can never be broken by life.",
+bg: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+symbol: "☾ ───────────── ☾"
+},
+{
+ar: "لَا تَبْحَثْ عَنْ السَّعَادَةِ... بَلِ اصْنَعْهَا فِي أَبْسَطِ التَّفَاصِيلِ.",
+en: "Do not search for happiness... create it in the simplest details.",
+bg: "linear-gradient(135deg, #42275a, #734b6d)",
+symbol: "❖ ───────────── ❖"
+},
+{
+ar: "أَقْوَى النُّفُوسِ... هِيَ الَّتِي خَبِرَتِ الأَلَمَ وَابْتَسَمَتْ.",
+en: "The strongest souls are those who knew pain and still smiled.",
+bg: "linear-gradient(135deg, #141e30, #243b55)",
+symbol: "✧ ───────────── ✧"
+}
+];
+
+// اختيار عشوائي
+const q = quotes[Math.floor(Math.random() * quotes.length)];
+
+document.getElementById("quote").innerText = q.ar;
+document.getElementById("quoteEn").innerText = q.en;
+document.body.style.background = q.bg;
+document.getElementById("symbol").innerText = q.symbol;
+document.getElementById("symbol2").innerText = q.symbol;
+
+// تاريخ عربي
+const today = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+document.getElementById("date").innerText =
+today.toLocaleDateString('ar-EG', options);
+
 </script>
 
 </body>
