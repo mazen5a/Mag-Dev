@@ -2,7 +2,7 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>اقتباس ذكي</title>
+<title>Quote Engine</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
@@ -14,18 +14,19 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Cairo', sans-serif;
-    transition: 1s;
+    transition: 0.8s;
     color: white;
 }
 
 .card {
-    width: 720px;
+    width: 750px;
     padding: 60px 50px;
     border-radius: 25px;
     text-align: center;
     backdrop-filter: blur(14px);
     border: 1px solid rgba(255,255,255,0.2);
     box-shadow: 0 0 90px rgba(0,0,0,0.6);
+    transition: 0.5s;
 }
 
 .title {
@@ -52,9 +53,9 @@ body {
 }
 
 .symbol {
-    font-size: 22px;
+    font-size: 24px;
     margin: 15px 0;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 button {
@@ -66,6 +67,11 @@ button {
     color: black;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 .name {
@@ -81,7 +87,7 @@ button {
 
 <div class="card">
 
-<div class="title">AI QUOTE GENERATOR</div>
+<div class="title">QUOTE ENGINE</div>
 <div class="date" id="date"></div>
 
 <div class="symbol" id="symbol"></div>
@@ -97,70 +103,108 @@ button {
 
 </div>
 
-<audio id="sound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+<audio id="sound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a7b3b9b3.mp3?filename=click-124467.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
-// 🔥 "قواعد توليد الاقتباسات"
-const subjects = [
-"الحياة","الإنسان","الصمت","الألم","القوة","الوقت","الخوف","الحلم","النفس","المصير"
+// 🔥 الاقتباسات حسب النوع (مختلفة فعلاً مش نفس النمط)
+const quotes = [
+{
+type:"philosophy",
+ar:"الحقيقة لا تُرى... بل تُفهم بالصمت.",
+en:"Truth is understood in silence.",
+bg:"linear-gradient(135deg,#0f2027,#203a43,#2c5364)",
+symbol:"☾"
+},
+{
+type:"motivation",
+ar:"لا تنتظر الفرصة... اصنعها بنفسك مهما كان الطريق صعب.",
+en:"Create your own opportunity.",
+bg:"linear-gradient(135deg,#1e3c72,#2a5298)",
+symbol:"⚡"
+},
+{
+type:"reality",
+ar:"ليس كل من وعدك باقٍ... والبقاء ليس للجميع.",
+en:"Not everyone who promised stays.",
+bg:"linear-gradient(135deg,#000428,#004e92)",
+symbol:"✦"
+},
+{
+type:"calm",
+ar:"كل شيء يمر... حتى الألم يتعب ويرحل.",
+en:"Everything passes eventually.",
+bg:"linear-gradient(135deg,#232526,#414345)",
+symbol:"✧"
+},
+{
+type:"philosophy",
+ar:"الصمت ليس فراغًا... بل امتلاء بالفهم.",
+en:"Silence is full of understanding.",
+bg:"linear-gradient(135deg,#141e30,#243b55)",
+symbol:"☾"
+},
+{
+type:"motivation",
+ar:"أقوى نسختك لم تظهر بعد.",
+en:"Your strongest version is not here yet.",
+bg:"linear-gradient(135deg,#373B44,#4286f4)",
+symbol:"⚡"
+},
+{
+type:"reality",
+ar:"بعض الخسارات... كانت إنقاذًا متأخرًا.",
+en:"Some losses are hidden salvation.",
+bg:"linear-gradient(135deg,#1f1c2c,#928dab)",
+symbol:"✦"
+},
+{
+type:"calm",
+ar:"لا شيء يدوم... وهذا سر راحة القلب.",
+en:"Nothing lasts, and that is peace.",
+bg:"linear-gradient(135deg,#16222A,#3A6073)",
+symbol:"✧"
+}
 ];
 
-const actions = [
-"يُعلّمك","يُغيّرك","يكسرُك ثم يبنيك","يختبرك","يرفعك","يتركك","يصنعك","يُظهرك"
-];
+let used = [];
 
-const endings = [
-"لكن لا أحد يفهمه.","ولكنك تنجو.","فتصبح أقوى.","حتى تتغير للأبد.","بدون أن تشعر.","وهذا سر الحياة.","لكن في النهاية تتعلم."
-];
-
-const symbols = ["✦","⚡","☾","✧","❖"];
-
-// 🔥 لتجنب التكرار
-let usedQuotes = [];
-
-// توليد اقتباس
 function generateQuote(){
 
-    let ar, en, key;
+    const sound = document.getElementById("sound");
+    sound.currentTime = 0;
+    sound.play().catch(()=>{});
 
+    let q;
+
+    // 🚫 منع التكرار
     do {
-        let s = subjects[Math.floor(Math.random()*subjects.length)];
-        let a = actions[Math.floor(Math.random()*actions.length)];
-        let e = endings[Math.floor(Math.random()*endings.length)];
+        q = quotes[Math.floor(Math.random()*quotes.length)];
+    } while(used.includes(q.ar));
 
-        ar = `${s} ${a}... ${e}`;
-        en = `${s} changes you... ${e}`;
+    used.push(q.ar);
 
-        key = ar;
-
-    } while(usedQuotes.includes(key));
-
-    usedQuotes.push(key);
-
-    // لو خلصوا نعيد التكرار
-    if(usedQuotes.length >= 200){
-        usedQuotes = [];
+    // إعادة التدوير لو خلصوا
+    if(used.length === quotes.length){
+        used = [];
     }
 
-    let symbol = symbols[Math.floor(Math.random()*symbols.length)];
-    let bg = `linear-gradient(135deg, #000000, #1a1a1a)`;
+    document.body.style.background = q.bg;
 
-    document.body.style.background = bg;
-    document.getElementById("quote").innerText = ar;
-    document.getElementById("quoteEn").innerText = en;
-    document.getElementById("symbol").innerText = symbol;
-    document.getElementById("symbol2").innerText = symbol;
+    document.getElementById("quote").innerText = q.ar;
+    document.getElementById("quoteEn").innerText = q.en;
+    document.getElementById("symbol").innerText = q.symbol;
+    document.getElementById("symbol2").innerText = q.symbol;
 
-    // صوت
-    let sound = document.getElementById("sound");
-    sound.currentTime = 0;
-    sound.play();
 }
 
-// تاريخ عربي
+// 📅 تاريخ عربي
 document.getElementById("date").innerText =
-new Date().toLocaleDateString('ar-EG',{ weekday:'long', year:'numeric', month:'long', day:'numeric' });
+new Date().toLocaleDateString('ar-EG',{
+weekday:'long', year:'numeric', month:'long', day:'numeric'
+});
 
 // أول تشغيل
 generateQuote();
