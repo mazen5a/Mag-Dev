@@ -9,7 +9,6 @@
 <style>
     body {
         margin: 0;
-        padding: 0;
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -20,33 +19,60 @@
     }
 
     .card {
-        width: 420px;
-        padding: 50px 30px;
-        text-align: center;
-        border-radius: 20px;
+        width: 600px;
+        padding: 60px 40px;
+        border-radius: 25px;
         background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 0 40px rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: 0.3s;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 80px rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255,255,255,0.15);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
     }
 
-    .card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 0 60px rgba(255, 255, 255, 0.15);
+    /* لمعة خفيفة */
+    .card::before {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+        transform: rotate(25deg);
+        top: -50%;
+        left: -50%;
+        animation: shine 6s infinite;
+    }
+
+    @keyframes shine {
+        0% {transform: translateX(-100%) rotate(25deg);}
+        100% {transform: translateX(100%) rotate(25deg);}
+    }
+
+    .title {
+        font-size: 14px;
+        letter-spacing: 3px;
+        color: rgba(255,255,255,0.5);
+        margin-bottom: 15px;
+    }
+
+    .date {
+        font-size: 13px;
+        color: rgba(255,255,255,0.4);
+        margin-bottom: 30px;
     }
 
     .line {
-        margin: 20px 0;
-        color: rgba(255,255,255,0.4);
-        letter-spacing: 2px;
+        margin: 25px 0;
+        color: rgba(255,255,255,0.3);
     }
 
     .quote {
-        font-size: 30px;
+        font-size: 36px;
         font-weight: 700;
-        line-height: 2;
-        margin: 25px 0;
+        line-height: 2.2;
+        margin: 30px 0;
+        animation: fadeIn 2s ease;
     }
 
     .quote span {
@@ -54,14 +80,19 @@
     }
 
     .name {
-        margin-top: 35px;
-        font-size: 13px;
-        color: rgba(255,255,255,0.4);
+        margin-top: 40px;
+        font-size: 14px;
+        color: rgba(255,255,255,0.5);
         letter-spacing: 1px;
     }
 
     .name::before {
         content: "— ";
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
     }
 </style>
 
@@ -70,6 +101,9 @@
 <body>
 
 <div class="card">
+
+    <div class="title">QUOTE OF THE DAY</div>
+    <div class="date" id="date"></div>
 
     <div class="line">✦ ───────────── ✦</div>
 
@@ -85,6 +119,12 @@
     </div>
 
 </div>
+
+<script>
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("date").innerText = today.toLocaleDateString('en-US', options);
+</script>
 
 </body>
 </html>
