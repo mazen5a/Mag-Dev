@@ -2,7 +2,7 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>اقتباس اليوم</title>
+<title>اقتباس ذكي</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
@@ -19,14 +19,13 @@ body {
 }
 
 .card {
-    width: 700px;
+    width: 720px;
     padding: 60px 50px;
     border-radius: 25px;
     text-align: center;
     backdrop-filter: blur(14px);
     border: 1px solid rgba(255,255,255,0.2);
     box-shadow: 0 0 90px rgba(0,0,0,0.6);
-    animation: fadeIn 1s;
 }
 
 .title {
@@ -50,7 +49,6 @@ body {
 .en {
     font-size: 18px;
     opacity: 0.75;
-    margin-top: 10px;
 }
 
 .symbol {
@@ -68,22 +66,12 @@ button {
     color: black;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: scale(1.1);
 }
 
 .name {
     margin-top: 40px;
     font-size: 13px;
     opacity: 0.5;
-}
-
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
 }
 </style>
 
@@ -93,7 +81,7 @@ button:hover {
 
 <div class="card">
 
-<div class="title">اقتباس اليوم</div>
+<div class="title">AI QUOTE GENERATOR</div>
 <div class="date" id="date"></div>
 
 <div class="symbol" id="symbol"></div>
@@ -103,91 +91,79 @@ button:hover {
 
 <div class="symbol" id="symbol2"></div>
 
-<button onclick="changeQuote()">اقتباس جديد</button>
+<button onclick="generateQuote()">اقتباس جديد</button>
 
 <div class="name">— mohamed ahmed mohamed ghazly</div>
 
 </div>
 
-<!-- صوت -->
-<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+<audio id="sound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
 
 <script>
 
-// 🔥 30+ اقتباس فخم (من اللي طلبتهم + الجديد)
-const quotes = [
-
-{ ar:"هَكَذَا الدُّنْيَا... وَكُلُّ مَا عَلَيْهَا فَانٍ.", en:"Everything fades.", bg:"linear-gradient(135deg,#000,#1a1a1a)", symbol:"✦" },
-
-{ ar:"لَا أَحَدَ يَنْقُذُكَ... أَنْقِذْ نَفْسَكَ.", en:"Save yourself.", bg:"linear-gradient(135deg,#0f2027,#2c5364)", symbol:"⚡" },
-
-{ ar:"الصَّمْتُ أَقْوَى مِنَ الكَلَامِ.", en:"Silence is stronger than words.", bg:"linear-gradient(135deg,#232526,#414345)", symbol:"☾" },
-
-{ ar:"كُلُّ مَا يَذْهَبُ... لَمْ يَكُنْ لَكَ.", en:"What leaves was never yours.", bg:"linear-gradient(135deg,#000428,#004e92)", symbol:"✧" },
-
-{ ar:"مَا يُؤْذِيكَ يَبْنِيكَ.", en:"Pain builds you.", bg:"linear-gradient(135deg,#141e30,#243b55)", symbol:"❖" },
-
-{ ar:"الأَلَمُ مُعَلِّمٌ صَامِت.", en:"Pain is a silent teacher.", bg:"linear-gradient(135deg,#1e3c72,#2a5298)", symbol:"⚡" },
-
-{ ar:"كُنْ أَقْوَى مِمَّا يَتَوَقَّعُونَ.", en:"Be stronger than they expect.", bg:"linear-gradient(135deg,#373B44,#4286f4)", symbol:"✦" },
-
-{ ar:"لَا تَتَعَلَّقْ... كُلُّ شَيْءٍ زَائِل.", en:"Don’t attach, everything fades.", bg:"linear-gradient(135deg,#16222A,#3A6073)", symbol:"☾" },
-
-{ ar:"الحَيَاةُ لَا تَنْتَظِرُ أَحَدًا.", en:"Life waits for no one.", bg:"linear-gradient(135deg,#1f1c2c,#928dab)", symbol:"✧" },
-
-{ ar:"أَقْوَى مَا فِيكَ مَا لَا يُرَى.", en:"Your strength is unseen.", bg:"linear-gradient(135deg,#141E30,#243B55)", symbol:"❖" },
-
-// 🔥 20 اقتباس جديد (اللي ضفناهم)
-{ ar:"أَكْثَرُ مَا يُتْعِبُكَ هُوَ التَّفْكِير.", en:"Overthinking drains you.", bg:"linear-gradient(135deg,#0f2027,#203a43,#2c5364)", symbol:"⚡" },
-
-{ ar:"بَعْضُ الخَسَائِرِ رِبْح.", en:"Some losses are gains.", bg:"linear-gradient(135deg,#141e30,#243b55)", symbol:"✦" },
-
-{ ar:"لَا تُحَاوِلْ فَهْمَ الكُل.", en:"Not everyone will understand.", bg:"linear-gradient(135deg,#232526,#414345)", symbol:"☾" },
-
-{ ar:"كُلُّ نِهَايَةٍ بِدَايَة.", en:"Every end is a start.", bg:"linear-gradient(135deg,#1e3c72,#2a5298)", symbol:"✧" },
-
-{ ar:"الصَّمْتُ أَفْضَلُ إِجَابَة.", en:"Silence is an answer.", bg:"linear-gradient(135deg,#373B44,#4286f4)", symbol:"❖" },
-
-{ ar:"اصْنَعْ نَفْسَكَ.", en:"Build yourself.", bg:"linear-gradient(135deg,#000428,#004e92)", symbol:"⚡" },
-
-{ ar:"مَا يَذْهَبُ يَحْمِيك.", en:"What leaves protects you.", bg:"linear-gradient(135deg,#1f1c2c,#928dab)", symbol:"✦" },
-
-{ ar:"القُوَّةُ فِي النُّهُوض.", en:"Strength is rising.", bg:"linear-gradient(135deg,#141E30,#243B55)", symbol:"☾" },
-
-{ ar:"لَا تَخَفْ مِنَ التَّغْيِير.", en:"Don’t fear change.", bg:"linear-gradient(135deg,#232526,#1c92d2)", symbol:"✧" },
-
-{ ar:"كُنْ نُورًا.", en:"Be the light.", bg:"linear-gradient(135deg,#0f2027,#2c5364)", symbol:"❖" }
-
+// 🔥 "قواعد توليد الاقتباسات"
+const subjects = [
+"الحياة","الإنسان","الصمت","الألم","القوة","الوقت","الخوف","الحلم","النفس","المصير"
 ];
 
-function changeQuote(){
+const actions = [
+"يُعلّمك","يُغيّرك","يكسرُك ثم يبنيك","يختبرك","يرفعك","يتركك","يصنعك","يُظهرك"
+];
 
-const q = quotes[Math.floor(Math.random()*quotes.length)];
+const endings = [
+"لكن لا أحد يفهمه.","ولكنك تنجو.","فتصبح أقوى.","حتى تتغير للأبد.","بدون أن تشعر.","وهذا سر الحياة.","لكن في النهاية تتعلم."
+];
 
-document.getElementById("quote").innerText = q.ar;
-document.getElementById("quoteEn").innerText = q.en;
-document.body.style.background = q.bg;
-document.getElementById("symbol").innerText = q.symbol;
-document.getElementById("symbol2").innerText = q.symbol;
+const symbols = ["✦","⚡","☾","✧","❖"];
 
-// صوت
-const sound = document.getElementById("clickSound");
-sound.currentTime = 0;
-sound.play();
+// 🔥 لتجنب التكرار
+let usedQuotes = [];
+
+// توليد اقتباس
+function generateQuote(){
+
+    let ar, en, key;
+
+    do {
+        let s = subjects[Math.floor(Math.random()*subjects.length)];
+        let a = actions[Math.floor(Math.random()*actions.length)];
+        let e = endings[Math.floor(Math.random()*endings.length)];
+
+        ar = `${s} ${a}... ${e}`;
+        en = `${s} changes you... ${e}`;
+
+        key = ar;
+
+    } while(usedQuotes.includes(key));
+
+    usedQuotes.push(key);
+
+    // لو خلصوا نعيد التكرار
+    if(usedQuotes.length >= 200){
+        usedQuotes = [];
+    }
+
+    let symbol = symbols[Math.floor(Math.random()*symbols.length)];
+    let bg = `linear-gradient(135deg, #000000, #1a1a1a)`;
+
+    document.body.style.background = bg;
+    document.getElementById("quote").innerText = ar;
+    document.getElementById("quoteEn").innerText = en;
+    document.getElementById("symbol").innerText = symbol;
+    document.getElementById("symbol2").innerText = symbol;
+
+    // صوت
+    let sound = document.getElementById("sound");
+    sound.currentTime = 0;
+    sound.play();
 }
 
 // تاريخ عربي
-const today = new Date();
 document.getElementById("date").innerText =
-today.toLocaleDateString('ar-EG',{
-weekday:'long',
-year:'numeric',
-month:'long',
-day:'numeric'
-});
+new Date().toLocaleDateString('ar-EG',{ weekday:'long', year:'numeric', month:'long', day:'numeric' });
 
 // أول تشغيل
-changeQuote();
+generateQuote();
 
 </script>
 
